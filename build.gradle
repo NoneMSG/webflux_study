@@ -1,6 +1,7 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '2.7.9-SNAPSHOT'
+	// id 'java'
+	id 'com.graphql-java-kickstart.spring-boot-starter' version '11.0.0'
+	id 'org.springframework.boot' version '2.7.9'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
@@ -18,15 +19,34 @@ repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/milestone' }
 	maven { url 'https://repo.spring.io/snapshot' }
+	maven { url 'https://repo1.maven.org/maven2/'}
 }
 
 dependencies {
+	// implementation 'com.graphql-java-kickstart:graphql-java-tools'
+	// implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-webflux'
+	// implementation 'com.graphql-java-kickstart:graphql-kickstart-spring-boot-autoconfigure-webflux'
+	// implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter'
+	implementation 'com.graphql-java:graphql-java:20.0'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
+// tasks.named('test') {
+// 	useJUnitPlatform()
+// }
+
+// jar {
+//     manifest {
+//         attributes(
+//             'Main-Class': 'com.toypj.toy.ToyApplication',
+//             'Implementation-Title': 'My Application',
+//             'Implementation-Version': version
+//         )
+//     }
+// }

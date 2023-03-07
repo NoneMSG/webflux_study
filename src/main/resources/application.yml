@@ -1,2 +1,16 @@
 server:
     port: 8001
+
+spring:
+    config:
+        import:
+            static/data.yml
+    cloud:
+        compatibility-verifier:
+            enabled: false
+        config:
+            enabled: false
+            import-check:
+                enabled: false
+
+# data-spec: "test,test2"

@@ -15,6 +15,7 @@ import java.net.URLEncoder;
 
 import org.springframework.util.*;
 import com.toypj.toy.com.config.WebClientConfig;
+import com.toypj.toy.com.config.CacheConfig;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +25,19 @@ import reactor.core.publisher.*;
 @RestController
 @AllArgsConstructor
 public class TrainInfoController {
-    
+            
+    private final CacheConfig cacheConfig;
+
     private final WebClientConfig webclinet;
+
+
+    @GetMapping("/test")
+    public Mono<?> getDummy(ServerWebExchange exchagnge) {
+        
+        
+        return Mono.just("test");
+    }
+
 
     @GetMapping("/trainInfo")
     public Mono<?> getTest(
@@ -39,6 +51,8 @@ public class TrainInfoController {
         queryParams.add("stationCode","3762");
         queryParams.add("week","DAY");
         queryParams.add("trainDirection","UP");
+
+        log.info("list : {}", cacheConfig.getSpecList());
 
         // UriComponents builder = UriComponentsBuilder.fromUriString("/B553766/smt-schedule/schedule")
         //                     .queryParam("serviceKey", "T8%2B4yDPNk7sKBdBZdJp%2Bjysa%2BzV6PZu%2BXbLJSqN3ZQ8eEKwb19FfEh0WQZVNaG9n9gN0KSDvout9uepmxJX%2FrQ%3D%3D")
@@ -55,11 +69,11 @@ public class TrainInfoController {
             // .uri(urlBuilder.toString())
             .uri("/B553766/smt-schedule/schedule", param -> param.queryParams(queryParams).build())
             .exchangeToMono(res -> {
-                log.info("" + res.statusCode());
+                // log.info("" + res.statusCode());
                 return res.toEntity(String.class);
             })
             .map(res -> {
-                log.info(res.getBody());
+                // log.info(res.getBody());
                 return res.getBody();
             });
             
