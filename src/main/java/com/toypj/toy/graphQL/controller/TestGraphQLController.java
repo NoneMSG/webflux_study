@@ -1,15 +1,14 @@
 package com.toypj.toy.graphQL.controller;
 
-import graphql.kickstart.*;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.server.ServerWebExchange;
-
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
+import graphql.*;
 
 @Controller
 @RequestMapping("/graphql")
